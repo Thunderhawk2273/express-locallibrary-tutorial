@@ -31,7 +31,8 @@ app.use('/catalog', catalogRouter);
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://m001-student:iron123456@cluster0-nhdke.mongodb.net/Cluster0?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://m001-student:iron123456@cluster0-nhdke.mongodb.net/Cluster0?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
